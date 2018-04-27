@@ -9,9 +9,9 @@ multi sub push(@array,*@values --> Int:D) {
 
 proto sub pop(|) is export {*}
 multi sub pop() {
-    callframe(1).my<!UNIT_MARKER>  # heuristic for top level calling
-      ?? pop(@*ARGS)               # called at top level, use @ARGV equivalent
-      !! pop(CALLERS::<@_>)        # pop from the caller's @_
+    callframe(2).my<!UNIT_MARKER>:exists  # heuristic for top level calling
+      ?? pop(@*ARGS)                        # top level, use @ARGV equivalent
+      !! pop(CALLERS::<@_>)                 # pop from the caller's @_
 }
 multi sub pop(@array) {
     @array.elems ?? @array.pop !! Nil
