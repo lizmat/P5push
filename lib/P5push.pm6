@@ -18,11 +18,12 @@ multi sub pop(@array) {
 }
 
 sub mainline(--> Bool:D) {  # heuristic for top level calling
-    # Before Rakudo commit 0d216befba336b1cd7a0b42, thunky things such as an onlystar
-    # proto would be "seen" by callframe().  Subsequent calls to the proto would be
-    # skipped if the call could be performed through the multi-dispatch cache, causing
-    # the info to be returned of one level deeper.
-    callframe(2).my<!UNIT_MARKER>:exists        # post commit 0d216befba336b1cd7a0b42
+    # Before Rakudo commit 0d216befba336b1cd7a0b42, thunky things such as
+    # an onlystar proto would be "seen" by callframe().  Subsequent calls
+    # to the proto would be skipped if the call could be performed through
+    # the multi-dispatch cache, causing the info to be returned of one
+    # level deeper.
+    callframe(2).my<!UNIT_MARKER>:exists  # post commit 0d216befba336b1cd7a0b42
       || (callframe(3).my<!UNIT_MARKER>:exists) || !callframe(3).my
 }
 
