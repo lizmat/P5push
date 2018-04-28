@@ -1,20 +1,26 @@
 use v6.c;
 
-unit module P5push:ver<0.0.1>:auth<cpan:ELIZABETH>;
+unit module P5push:ver<0.0.2>:auth<cpan:ELIZABETH>;
 
 proto sub push(|) is export {*}
 multi sub push(@array,*@values --> Int:D) {
-    @array.push(@values).elems
+    @array.append(@values).elems
 }
 
 proto sub pop(|) is export {*}
 multi sub pop() {
-    callframe(2).my<!UNIT_MARKER>:exists  # heuristic for top level calling
-      ?? pop(@*ARGS)                        # top level, use @ARGV equivalent
-      !! pop(CALLERS::<@_>)                 # pop from the caller's @_
+    mainline()                # heuristic for top level calling
+      ?? pop(@*ARGS)            # top level, use @ARGV equivalent
+      !! pop(CALLERS::<@_>)     # pop from the caller's @_
 }
 multi sub pop(@array) {
     @array.elems ?? @array.pop !! Nil
+}
+
+sub mainline(--> Bool:D) {  # heuristic for top level calling
+    my %my := callframe(3).my;
+    %my<!UNIT_MARKER>:exists
+      || !%my  # https://github.com/rakudo/rakudo/issues/1781
 }
 
 =begin pod
