@@ -2,6 +2,9 @@ Revision history for P5push
 
 {{$NEXT}}
 
+0.0.5  2019-11-10T14:32:14+01:00
+    - Changed Perl 5 to Perl
+
 0.0.4  2018-05-21T21:01:24+02:00
     - Add original Perl 5 documentation
 
