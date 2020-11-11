@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 use Test;
 use P5push;
 
@@ -26,4 +26,4 @@ is pop, "BAR", 'does bare pop pop from @*ARGS at top level (1)';
 is pop, "FOO", 'does bare pop pop from @*ARGS at top level (2)';
 is pop, Nil, 'does bare pop pop from @*ARGS at top level (3)';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

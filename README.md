@@ -1,7 +1,7 @@
 NAME
 ====
 
-P5push - Implement Perl's push() / pop() built-ins
+Raku port of Perl's push() / pop() built-ins
 
 SYNOPSIS
 ========
@@ -21,7 +21,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-This module tries to mimic the behaviour of the `push` and `pop` functions of Perl as closely as possible.
+This module tries to mimic the behaviour of Perl's `push` and `pop` built-ins as closely as possible in the Raku Programming Language.
 
 ORIGINAL PERL 5 DOCUMENTATION
 =============================
@@ -75,6 +75,21 @@ ORIGINAL PERL 5 DOCUMENTATION
 
                 use 5.014;  # so push/pop/etc work on scalars (experimental)
 
+PORTING CAVEATS
+===============
+
+In future language versions of Raku, it will become impossible to access the `@_` variable of the caller's scope, because it will not have been marked as a dynamic variable. So please consider changing:
+
+    pop;
+
+to:
+
+    pop(@_);
+
+or, using the subroutine as a method syntax:
+
+    @_.&pop;
+
 AUTHOR
 ======
 
@@ -85,7 +100,7 @@ Source can be located at: https://github.com/lizmat/P5push . Comments and Pull R
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 

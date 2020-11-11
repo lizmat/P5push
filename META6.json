@@ -1,23 +1,27 @@
 {
-  "auth" : "cpan:ELIZABETH",
-  "authors" : [
+  "auth": "cpan:ELIZABETH",
+  "authors": [
     "Elizabeth Mattijsen"
   ],
-  "build-depends" : [ ],
-  "depends" : [ ],
-  "description" : "Implement Perl's push() / pop() built-ins",
-  "license" : "Artistic-2.0",
-  "name" : "P5push",
-  "perl" : "6.c",
-  "provides" : {
-    "P5push" : "lib/P5push.pm6"
+  "build-depends": [
+  ],
+  "depends": [
+  ],
+  "description": "Raku port of Perl's push() / pop() built-ins",
+  "license": "Artistic-2.0",
+  "name": "P5push",
+  "perl": "6.c",
+  "provides": {
+    "P5push": "lib/P5push.pm6"
   },
-  "resources" : [ ],
-  "source-url" : "https://github.com/lizmat/P5push.git",
-  "tags" : [
+  "resources": [
+  ],
+  "source-url": "https://github.com/lizmat/P5push.git",
+  "tags": [
     "PERL5",
     "CPAN5"
   ],
-  "test-depends" : [ ],
-  "version" : "0.0.5"
+  "test-depends": [
+  ],
+  "version": "0.0.6"
 }

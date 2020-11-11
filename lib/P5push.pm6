@@ -1,6 +1,6 @@
-use v6.c;
+use v6.d;
 
-unit module P5push:ver<0.0.5>:auth<cpan:ELIZABETH>;
+unit module P5push:ver<0.0.6>:auth<cpan:ELIZABETH>;
 
 proto sub push(|) is export {*}
 multi sub push(@array,*@values --> Int:D) {
@@ -31,7 +31,7 @@ sub mainline(--> Bool:D) {  # heuristic for top level calling
 
 =head1 NAME
 
-P5push - Implement Perl's push() / pop() built-ins
+Raku port of Perl's push() / pop() built-ins
 
 =head1 SYNOPSIS
 
@@ -49,8 +49,8 @@ P5push - Implement Perl's push() / pop() built-ins
 
 =head1 DESCRIPTION
 
-This module tries to mimic the behaviour of the C<push> and C<pop> functions
-of Perl as closely as possible.
+This module tries to mimic the behaviour of Perl's C<push> and C<pop>
+built-ins as closely as possible in the Raku Programming Language.
 
 =head1 ORIGINAL PERL 5 DOCUMENTATION
 
@@ -103,6 +103,22 @@ of Perl as closely as possible.
 
                 use 5.014;  # so push/pop/etc work on scalars (experimental)
 
+=head1 PORTING CAVEATS
+
+In future language versions of Raku, it will become impossible to access the
+C<@_> variable of the caller's scope, because it will not have been marked as
+a dynamic variable.  So please consider changing:
+
+    pop;
+
+to:
+
+    pop(@_);
+
+or, using the subroutine as a method syntax:
+
+    @_.&pop;
+
 =head1 AUTHOR
 
 Elizabeth Mattijsen <liz@wenzperl.nl>
@@ -112,10 +128,12 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 =end pod
+
+# vim: expandtab shiftwidth=4
