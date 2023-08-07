@@ -2,12 +2,10 @@ use v6.*;
 use Test;
 use P5push;
 
-plan 16;
+plan 14;
 
 ok defined(::('&push')),        'is &push imported?';
-ok !defined(P5push::{'&push'}), 'is &push externally NOT accessible?';
 ok defined(::('&pop')),         'is &pop imported?';
-ok !defined(P5push::{'&pop'}),  'is &pop externally NOT accessible?';
 
 my @a = 1;
 is (push @a, 42), 2, 'does push return number of elems';

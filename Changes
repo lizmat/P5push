@@ -2,6 +2,11 @@ Revision history for P5push
 
 {{$NEXT}}
 
+0.0.8  2023-08-07T19:54:36+02:00
+    - Update test file extension
+    - Limit implicit use of $_ to direct caller only
+    - Added sponsor link
+
 0.0.7  2021-09-09T13:16:21+02:00
     - Change file extension to .rakumod
     - Migrate to zef ecosystem

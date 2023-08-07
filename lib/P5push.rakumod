@@ -1,7 +1,5 @@
 use v6.d;
 
-unit module P5push:ver<0.0.7>:auth<zef:lizmat>;
-
 proto sub push(|) is export {*}
 multi sub push(@array,*@values --> Int:D) {
     @array.append(@values).elems
@@ -10,8 +8,8 @@ multi sub push(@array,*@values --> Int:D) {
 proto sub pop(|) is export {*}
 multi sub pop() {
     mainline()                # heuristic for top level calling
-      ?? pop(@*ARGS)            # top level, use @ARGV equivalent
-      !! pop(CALLERS::<@_>)     # pop from the caller's @_
+      ?? pop(@*ARGS)                 # top level, use @ARGV equivalent
+      !! pop(CALLER::LEXICAL::<@_>)  # pop from the caller's @_
 }
 multi sub pop(@array) {
     @array.elems ?? @array.pop !! Nil
@@ -123,12 +121,16 @@ or, using the subroutine as a method syntax:
 
 Elizabeth Mattijsen <liz@raku.rocks>
 
+If you like this module, or what I’m doing more generally, committing to a
+L<small sponsorship|https://github.com/sponsors/lizmat/>  would mean a great
+deal to me!
+
 Source can be located at: https://github.com/lizmat/P5push . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018, 2019, 2020, 2021 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021, 2023 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
